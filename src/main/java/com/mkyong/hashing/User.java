@@ -10,6 +10,9 @@ public class User {
     private String email ;
     private double telephone  ;
 
+    public User() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

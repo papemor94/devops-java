@@ -35,4 +35,13 @@ public class AppTest
     {
         assertTrue( true );
     }
+
+    public void testUser()
+    {
+
+        User u1  = new User() ;
+        u1.setEmail("papemor94@gmail.com");
+        System.out.println(u1);
+        assertEquals("papemor94@gmail.com" , u1.getEmail());
+    }
 }
