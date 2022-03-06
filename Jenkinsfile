@@ -11,11 +11,10 @@ echo "PATH = ${M2_HOME}/bin:${PATH}"
 echo "M2_HOME = /opt/maven"
 }
 }
-stage('Build') {
-    stage ('Build') {
-      steps {
-        sh 'mvn clean package'
-      }
+stage ('Build') {
+steps {
+sh 'mvn clean package'
+}
 }
 }
 }
