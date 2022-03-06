@@ -7,6 +7,17 @@
   <version>1.0-SNAPSHOT</version>
   <name>java-project</name>
   <url>http://maven.apache.org</url>
+
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://github.com/papemor94/devops-java</url>
+    </repository>
+  </distributionManagement>
+
+
   <properties>
   <sonar.organization>papemor94</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -21,24 +32,98 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
-  <plugins>
-  <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>exec-maven-plugin</artifactId>
-    <version>3.0.0</version>
-    <executions>
-      <execution>
-        <goals>
-          <goal>java</goal>
-        </goals>
-      </execution>
-    </executions>
-    <configuration>
-      <mainClass>com.mkyong.hashing.App</mainClass>
-    </configuration>
-  </plugin>
-  </plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+        <inherited>true</inherited>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>com.mkyong.hashing.App</mainClass>
+        </configuration>
+      </plugin>
+      <!--  GENERATE JAR WITH DEPENDENCES MAVEN PLUGIN
+Builds a jar that can merge the artifact and its dependencies
+https://maven.apache.org/plugins/maven-shade-plugin/
+WARNING minimizeJar can cause trouble, disable it in the child project if needed
+The manifest mainclass can be given with the property ${app.main.class}.
+Its is added to the package phase.
+-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.3</version>
+        <configuration>
+          <createDependencyReducedPom>true</createDependencyReducedPom>
+          <minimizeJar>false</minimizeJar>
+          <!-- The shaded artifact is not the main artifact -->
+          <shadedArtifactAttached>true</shadedArtifactAttached>
+          <shadedClassifierName>withdependencies</shadedClassifierName>
+
+          <transformers>
+            <!-- merge services ressource for SPI -->
+            <transformer
+                    implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+
+            <!-- makes a default entry point in the shaded jar -->
+            <transformer
+                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+              <manifestEntries>
+                <Main-Class>com.Main</Main-Class>
+                <X-Compile-Source-JDK>${java.version}</X-Compile-Source-JDK>
+                <X-Compile-Target-JDK>${java.version}</X-Compile-Target-JDK>
+                <Multi-Release>true</Multi-Release>
+              </manifestEntries>
+            </transformer>
+
+            <!-- keep a default config file -->
+            <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+              <resource>config.properties</resource>
+              <resource>log4j.properties</resource>
+            </transformer>
+          </transformers>
+
+          <!-- removes signatures in uberjar -->
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/*.SF</exclude>
+                <exclude>META-INF/*.DSA</exclude>
+                <exclude>META-INF/*.RSA</exclude>
+              </excludes>
+            </filter>
+          </filters>
+
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
 </project>
