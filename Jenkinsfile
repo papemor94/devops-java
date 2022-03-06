@@ -12,10 +12,10 @@ echo "M2_HOME = /opt/maven"
 }
 }
 stage('Build') {
-steps {
-{
-sh 'mvn -B -DskipTests clean package'
-}
+    stage ('Build') {
+      steps {
+        sh 'mvn clean package'
+      }
 }
 }
 }
