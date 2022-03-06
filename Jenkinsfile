@@ -13,7 +13,7 @@ echo "M2_HOME = /opt/maven"
 }
 stage('Build') {
 steps {
-dir("/var/lib/jenkins/workspace/testing") {
+{
 sh 'mvn -B -DskipTests clean package'
 }
 }
