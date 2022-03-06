@@ -18,4 +18,3 @@ sh 'mvn clean package'
 }
 }
 }
-}
