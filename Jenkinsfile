@@ -13,7 +13,7 @@ echo "M2_HOME = /opt/maven"
 }
 stage ('Build') {
 steps {
-sh 'mvn clean package'
+bat 'mvn clean package'
 }
 }
 }
