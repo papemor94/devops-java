@@ -1,5 +1,6 @@
 pipeline {
 agent any
+code = load 'perf.groovy'
 tools {
 maven "mav"
 jdk "jdk8"
@@ -14,6 +15,11 @@ echo "M2_HOME = /opt/maven"
 stage ('Build') {
 steps {
 bat 'mvn clean package '
+}
+}
+stage ('test groovy') {
+steps {
+code.example1()
 }
 }
 }
