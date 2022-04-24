@@ -1,6 +1,6 @@
 pipeline {
 agent any
-code = load 'perf.groovy'
+code = load("perf.groovy")
 tools {
 maven "mav"
 jdk "jdk8"
