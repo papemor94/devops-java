@@ -14,6 +14,9 @@ pipeline {
      }
    stage ('Build'){
       steps {
+          script{
+                    modules.first = load "perf.groovy"
+                }
       bat 'mvn clean package '
       }
     }
