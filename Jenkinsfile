@@ -1,3 +1,4 @@
+def modules = [:]
 pipeline {
   agent any
   tools {
