@@ -1,5 +1,5 @@
 def modules = [:]
-pipeline {
+node {
   agent any
   tools {
     maven "mav"
