@@ -1,6 +1,6 @@
 def modules = [:]
+executor = this
 pipeline {
-  executor = this
   agent any
   tools {
     maven "mav"
