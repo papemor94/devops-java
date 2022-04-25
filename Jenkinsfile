@@ -1,5 +1,5 @@
 def modules = [:]
-pipelin {
+pipeline {
   def executor = this
   agent any
   tools {
