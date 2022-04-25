@@ -1,4 +1,5 @@
-def modules = [:]
+def modules = [:]$
+def script  = this
 node {
   agent any
   tools {
@@ -15,8 +16,8 @@ node {
    stage ('Build'){
       steps {
          
-                    modules.first = load "perf.groovy"
-                    modules.first.example1()
+                    this.modules.first = load "perf.groovy"
+                    this.modules.first.example1()
                
       bat 'mvn clean package '
       }
