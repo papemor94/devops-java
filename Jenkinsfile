@@ -1,4 +1,4 @@
-import perf
+import Selenium
 def modules = [:]
 pipeline {
   agent any
