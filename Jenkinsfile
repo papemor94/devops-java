@@ -1,6 +1,6 @@
-def modules = [:]$
+def modules = [:]
 def script  = this
-node {
+pipeline {
   agent any
   tools {
     maven "mav"
