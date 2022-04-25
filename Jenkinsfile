@@ -1,5 +1,4 @@
 def modules = [:]
-def script  = this
 pipeline {
   agent any
   tools {
