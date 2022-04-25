@@ -14,10 +14,10 @@ pipeline {
      }
    stage ('Build'){
       steps {
-          script{
+         
                     modules.first = load "perf.groovy"
                     modules.first.example1()
-                }
+               
       bat 'mvn clean package '
       }
     }
