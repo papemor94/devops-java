@@ -1,5 +1,6 @@
 def modules = [:]
-node {
+pipelin {
+  def executor = this
   agent any
   tools {
     maven "mav"
@@ -8,8 +9,8 @@ node {
   stages {
     stage('Initialize'){
       steps{
-        echo "PATH = ${M2_HOME}/bin:${PATH}"
-        echo "M2_HOME = /opt/maven"
+        executor.echo "PATH = ${M2_HOME}/bin:${PATH}"
+        executor.echo "M2_HOME = /opt/maven"
       }
      }
    stage ('Build'){
