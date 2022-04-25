@@ -1,3 +1,4 @@
+import teexma.workflow.qa.SeleniumImageCreator;
 def modules = [:]
 pipeline {
   agent any
@@ -15,7 +16,6 @@ pipeline {
    stage ('Build'){
       steps {
         script{
-         import teexma.workflow.qa.SeleniumImageCreator;
          def executor = this
                     modules.first = load "perf.groovy"
                     modules.first.example1()
