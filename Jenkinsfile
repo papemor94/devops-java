@@ -1,4 +1,4 @@
-import teexma.workflow.qa.SeleniumImageCreator;
+import perf
 def modules = [:]
 pipeline {
   agent any
