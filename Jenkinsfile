@@ -1,9 +1,5 @@
 pipeline {
 agent any
-script{
-  def code = load("perf.groovy")
-  }
-
 tools {
 maven "mav"
 jdk "jdk8"
@@ -20,11 +16,6 @@ steps {
 bat 'mvn clean package '
 }
 }
-stage ('test groovy') {
-steps {
-script{
-  code.example1()
-  }
 
 }
 }
