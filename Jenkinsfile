@@ -27,6 +27,7 @@ pipeline {
       steps {
        
       echo  "stashing"
+      echo env.WORKSPACE
       stash includes: env.WORKSPACE, name: 'builtSources'
       dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\stashs') {
           unstash 'builtSources'
