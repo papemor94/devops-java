@@ -23,5 +23,15 @@ pipeline {
       bat 'mvn clean package '
       }
     }
+    stage ('Stash'){
+      steps {
+       
+      echo  "stashing"
+      stash includes: env.WORKSPACE, name: 'builtSources'
+      dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\stashs') {
+          unstash 'builtSources'
+        }
+      }
+    }
   }
 }
