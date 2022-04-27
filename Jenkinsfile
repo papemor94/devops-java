@@ -27,10 +27,7 @@ pipeline {
       steps {
        
       echo  "stashing"
-      echo env.WORKSPACE
-      dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\stashs') {
-        unstash env.WORKSPACE
-        }
+      echo env.WORKSPACE.size()
       }
     }
   }
