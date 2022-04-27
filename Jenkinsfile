@@ -27,7 +27,7 @@ pipeline {
       steps {
        
       echo  "stashing"
-      echo env.WORKSPACE.size()
+      echo readFile(env.WORKSPACE).size()
       }
     }
   }
