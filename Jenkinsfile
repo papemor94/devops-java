@@ -27,7 +27,7 @@ pipeline {
       steps {
        
       echo  "stashing"
-      echo readFile("C:\\Users\\pape.mor-cisse\\Desktop\\BASSETTI\\Objectifs\\scenario test").size()
+      echo readFile("./").size()
       }
     }
   }
