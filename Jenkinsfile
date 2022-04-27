@@ -28,7 +28,6 @@ pipeline {
        
       echo  "stashing"
       echo env.WORKSPACE
-        stash includes: "${env.WORKSPACE}\\pom.xml", name: 'builtSources'
       dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\stashs') {
         unstash env.WORKSPACE
         }
