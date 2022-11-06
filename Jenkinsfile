@@ -2,7 +2,7 @@ def modules = [:]
 pipeline {
   agent any
 
-  envrironnement{
+  environnement{
 
      USER_NAME = "Pape";
      USER_ID = 22;
