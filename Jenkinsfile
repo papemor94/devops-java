@@ -10,10 +10,9 @@ pipeline {
   stages {
       stage('Initialize'){
           steps{
-            echo "USER_NAME  = ${env.USER_NAME}"
+            echo "USER_NAME  = ${env.USER_NAME}";
             //echo "M2_HOME = /opt/maven"
-
-            sh  'echo $USER_NAME'
+             sh 'pwd' 
           }
       }
   /*    stage ('Build'){
