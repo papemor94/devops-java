@@ -12,6 +12,8 @@ pipeline {
           steps{
             echo "USER_NAME  = ${env.USER_NAME}"
             //echo "M2_HOME = /opt/maven"
+
+            sh  'echo $USER_NAME'
           }
       }
   /*    stage ('Build'){
