@@ -12,7 +12,7 @@ pipeline {
           steps{
             echo "USER_NAME  = ${env.USER_NAME}";
             //echo "M2_HOME = /opt/maven"
-             sh 'pwd' 
+             bat 'echo "pwd"' 
           }
       }
   /*    stage ('Build'){
